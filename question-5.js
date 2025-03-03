@@ -17,5 +17,19 @@ const products = [
   },
 ];
 
-const promotionCode = "";
+const promotionCode = "sale50";
 // เริ่มเขียนโค้ดตรงนี้
+function calculateTotalPrice (cart,code){
+  let discountPercentage = Number(code.slice(4));
+  
+  let totalCart = 0;
+  for (let i = 0; i < cart.length; i++) {
+  totalCart += cart[i].price * cart[i].quantity;
+  }
+
+  let totalPrice = totalCart - ( totalCart * (discountPercentage / 100) );
+
+  return totalPrice;
+}
+
+console.log(`ราคาสินค้าหลังจากลด: ${calculateTotalPrice(products, promotionCode)} บาท`);
